@@ -21,4 +21,4 @@ A simple blog platform powered by Django
 - WYSIWYG Editor for Post Editor
 - Registering Page
 - Upload Images for Posts
-
+- Post Comment
