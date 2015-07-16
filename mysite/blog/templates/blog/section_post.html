@@ -1,126 +1,180 @@
+
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
-{% load staticfiles %}
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+<head>
 
-    <title>Aslam's Experimental</title>
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>FariX - Blog Platform</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href='http://fonts.googleapis.com/css?family=Raleway:400,300' rel='stylesheet' type='text/css'>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-   
-    <link rel="stylesheet" href="http://getbootstrap.com/examples/blog/blog.css"></style>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  </head>
+  <script type="text/javascript">
+  $(document).ready(function($){
+    
+    var nav = $('#farix-nav');
+    
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
 
-  <body>
+            nav.addClass("farix-nav-fixed");
+            $('#farix-nav').stop().animate({'opacity':'0.2'},400);
 
-    <div class="blog-masthead">
-      <div class="container">
-        <nav class="blog-nav">
-          <a class="blog-nav-item active" href="{% url 'blog_index' %}">Home</a>
-          <a class="blog-nav-item" href="#">New features</a>
-          <a class="blog-nav-item" href="#">Press</a>
-          <a class="blog-nav-item" href="#">New hires</a>
-          <a class="blog-nav-item" href="#">About</a>
-        </nav>
+            if($("#farix-nav").hover(function() {
+              $('#farix-nav').stop().animate({'opacity':'1'},400);
+            }));
+
+        } else {
+            nav.removeClass("farix-nav-fixed");
+             $('#farix-nav').stop().animate({'opacity':'1'},400);
+        }
+    });
+ 
+});
+  </script>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="{{ STATIC_URL }}blog/css/normalize.css">
+  <link rel="stylesheet" href="{{ STATIC_URL }}blog/css/skeleton.css">
+  <link rel="stylesheet" href="{{ STATIC_URL }}blog/css/custom.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+{% autoescape on %}
+<body id="page">
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div id='farix-nav'>
+      <div class="container nav-bar">
+       <div class="row">
+            <div id="farix-logo">
+              <h1>FariX</h1>
+            </div>
+            <div id="farix-menu">
+              <ul>
+                  <li><a href="{% url 'blog_index' %}">Home</a>
+                <li><a href="#">About Us</a>
+
+                {% if user.is_authenticated %}
+                  <li><a href="/logout/"><button id='nav-btn'>Log Out</button></a></li>
+                {% else %}
+                  <li><a href="/login/"><button id='nav-btn'>Log In</button></a></li>
+                {% endif %}
+              </ul>
+            </div>
+        </div>
       </div>
     </div>
 
-    <div class="container">
+  <div class="container content">
+    <div class="row">
+      <div class="nine columns">
 
-      <div class="blog-header">
-        <h1 class="blog-title">FariX</h1>
-        <p class="lead blog-description">A simple blog platform created using Django</p>
-      </div>
+      <center><h2>Section Posts</h2>
 
-      <div class="row">
+      <br/>
 
-        <div class="col-sm-8 blog-main">
+      {% if posts %}
 
-          <div class="blog-post">
+        {% for post in posts %}
 
-          <h2>Section Related Posts</h2><br />
+          {% if post.section.enabled == True %}
+        
+       <h3><a id="farix-link" href="/blog/{{post.id}}/">{{ post.title }}</a></h3>
+        <h6>Written by <a href="#">{{ post.author }}</a> at {{ post.created_on }}</h6>
+        <hr />
 
-          {% if posts %}
+        {% endif %}
 
-               {% for post in posts %}
+        {% endfor %}
 
-            <h2 class="blog-post-title">{{ post.title }}</h2>
-            <p class="blog-post-meta">{{ post.created_on }} by <a href="#">{{ post.author }}</a></p>
-
-               {% endfor %}
             {%else%}
-              <h2>Invalid Page!</h2>
+              <h2>No posts found</h2>
              {% endif %}
 
-          </div><!-- /.blog-post -->
+        </center>
 
-          <nav>
-            <ul class="pager">
-              <li><a href="#">Previous</a></li>
-              <li><a href="#">Next</a></li>
-            </ul>
-          </nav>
+      </div>
 
-        </div><!-- /.blog-main -->
+      <div id="farix-sidebar">
+        <div class="container">
 
-        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-          <div class="sidebar-module sidebar-module-inset">
-            <h4>About</h4>
-            <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-          </div>
-          <div class="sidebar-module">
-            <h4>Blog Sections</h4>
-            <ol class="list-unstyled">
-            {% for sections in blog_sect %}
-              <li><a href="#">{{sections.section_name}}</a></li>
-            {% endfor %}
-            </ol>
-          </div>
-          <div class="sidebar-module">
-            <h4>Authors</h4>
-            <ol class="list-unstyled">
-            {% if usr_list %}
-              {% for users in usr_list %}
-                {% load blog_filters %}
-                {% if user.groups.all.0 %}
-              <li><a href="#">{{ users.username }}</a></li>
+      <div id="search">
+        <form action="/login/" method="POST">
+           <input class="u-full-width" placeholder="Search Blog" name="username" type="text">
+        </form>
+      </div>
+
+          <ul>
+          <li>
+                <h5>Latest Posts</h5>
+                <ul id="farix_sidebar_post"> 
+                   {% for posts in latest_post %}
+                   <li><a href="/blog/{{posts.id}}/">{{posts.title}}</a></li>
+                   {% endfor %}
+                </ul>
+            </li>
+            <li>
+                <h5>Blog Sections</h5>
+                <ul id="farix_sidebar_section"> 
+                   {% for sections in blog_sect %}
+                   <li><a href="/blog/section/{{sections.section_name}}/">{{sections.section_name}}</a></li>
+                   {% endfor %}
+                </ul>
+            </li>
+            <li>
+                <h5>Authors</h5>
+                <ul id="farix_sidebar_section">
+                {% if usr_list %}
+                  {% for users in usr_list %}
+                          <li><a href="/blog/author/{{ users.username }}/">{{ users.username }}</a></li>
+                  {% endfor %}
                 {% endif %}
-              {% endfor %}
-            {% endif %}
-            </ol>
+                </ul>
+            </li>
+            <br /><br />
+          </ul>
+
           </div>
-        </div><!-- /.blog-sidebar -->
+      </div>
 
-      </div><!-- /.row -->
+      </div>
 
-    </div><!-- /.container -->
+      </div>
 
-    <footer class="blog-footer">
-      <p>Blog powered by <a href="#">Django</a> & designed using <a href="#">Bootstrap</a>.</p>
-      <p>
-        <a href="#">Back to top</a>
-      </p>
-    </footer>
-  </body>
+      <div id="farix-footer">
+
+            <footer>
+
+                <div id="footer-text">
+           
+            Powered by <a href="#">Django</a> & Designed using <a href="#">Skeleton</a><br />
+            Developed by <a href="https://github.com/ex094/">Muhammad Aslam Khan</a>
+
+                </div>
+
+            </footer>
+
+      </div>
+        
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+{% endautoescape %}
 </html>

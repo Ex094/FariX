@@ -1,5 +1,4 @@
 # Django settings for mysite project.
-
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -72,7 +71,21 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    '/home/django/mysite/static/',
 )
+
+DJANGO_WYSIWYG_FLAVOR = "tinymce"
+
+TINYMCE_DEFAULT_CONFIG = {
+    'plugins': "table,xhtmlxtras,paste,searchreplace",
+    'theme': "advanced",
+    "theme_advanced_buttons3_add" : "cite,abbr",
+    'cleanup_on_startup': True,
+    'custom_undo_redo_levels': 10,
+    'width': 1000,
+    'height': 300,
+    'resize': "both",
+}
 
 # List of finder classes that know how to find static files in
 # various locations.
@@ -126,6 +139,8 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'blog',
+    'django_wysiwyg',
+    'tinymce'
 )
 
 # A sample logging configuration. The only tangible logging

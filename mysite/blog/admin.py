@@ -1,8 +1,7 @@
 from django.contrib import admin
-from blog.models import Post, Section
+from blog.models import Post, Section, Comment
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
-
 
 class postAdmin(admin.ModelAdmin):
 
@@ -28,5 +27,11 @@ class sectionAdmin(admin.ModelAdmin):
 
 	list_display = ['section_name', 'enabled']
 
+
+class CommentAdmin(admin.ModelAdmin):
+
+	list_display = ['user_name', 'comment', 'commented_on_post']
+
 admin.site.register(Post, postAdmin)
 admin.site.register(Section, sectionAdmin)
+admin.site.register(Comment, CommentAdmin)

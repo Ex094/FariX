@@ -1,0 +1,207 @@
+h2, h3 {
+
+	padding: 0px;
+	margin: 0px;
+}
+
+/**Top Navigation Bar**/
+
+/** Nav Menu **/
+#farix-menu ul {
+
+	padding-top: 12px;
+	font-size: 19px;
+}
+
+#farix-menu ul li {
+
+	display: inline;
+	padding: 20px;
+}
+
+#nav-btn {
+
+	color: #fff;
+}
+
+#farix-menu ul li a {
+
+	text-decoration: none;
+	display: inline-block;
+	color: #fff;
+}
+
+#farix-menu ul li a:hover {
+
+	color: #80CEB9;
+
+	-webkit-transition: all 0.7s ease;
+	transition: all 0.7s ease;
+
+}
+
+#farix-nav {
+
+	text-align: center;
+	margin-bottom: 50px;
+	border-bottom: 1px solid #E6E6DC;
+	background: #2F343A;
+	color: #fff;
+}
+
+.farix-nav-fixed {
+
+	position: fixed;
+	width: 100%;
+	z-index: 9999;
+}
+
+.nav-bar {
+
+	padding-top: 20px;
+	text-align: center;
+}
+
+#farix-menu {
+
+	list-style-type: none;
+	float: right;
+}
+
+/** Logo **/
+
+#farix-logo {
+
+	float: left;
+}
+
+.content {
+
+	flex: 1;
+}
+
+#farix-sidebar {
+
+	width: 240px;
+	float: right;
+}
+
+#farix-sidebar ul li {
+
+	list-style-type: none;
+}
+
+
+#page {
+
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+#farix-footer {
+
+	height: 45px;
+	border-top: 1px solid #E5E5E5;
+    background: #2F343A;
+    color: #fff;
+    text-align: center; 
+    padding: 30px;
+       /* This value is the height of your footer */
+}
+
+#footer-text > a {
+
+	text-decoration: none;
+}
+
+#farix-login-form {
+
+	background: #E6E6DC;
+}
+
+#farix-login {
+
+	color: #fff;
+
+	margin: 0 auto;
+	text-align: center;
+
+	width: 350px;
+	padding: 25px;
+	margin-top: 10%;
+
+	background: #2F343A;
+
+	border-radius: 100px 2px 100px 2px;
+}
+
+#farix-login input {
+
+	color: black;
+}
+
+#search {
+
+	height: 40px;
+	width: 100%;
+	padding: 10px;
+	border: 2px solid #2F343A;
+
+	margin-bottom: 30px;
+}
+
+#farix_sidebar_section > li, #farix_sidebar_post > li {
+
+	font-size: 14px;
+	margin: 0px;
+	padding: 0px;
+
+}
+
+#farix_sidebar_section li a, #farix_sidebar_post li a {
+
+	text-decoration: none;
+}
+
+#farix_sidebar_section li a:hover, #farix_sidebar_post li a:hover {
+
+	border-left: 1px solid #2F343A;
+	padding-left: 4px;
+	color: black;
+	-webkit-transition: all 0.9s ease;
+	transition: all 0.7s ease;
+}
+
+
+#farix-link {
+
+	text-decoration: none;
+}
+
+#farix-link:hover {
+
+	color: black;
+	-webkit-transition: all 0.7s ease;
+	transition: all 0.7s ease;
+}
+
+.farix-post-comments h6, p {
+
+	margin:0px;
+	padding: 0px;
+}
+
+#user-comment {
+
+    color: #fff;
+	background: #2F343A;
+	padding: 10px;
+	margin-bottom: 15px;
+	border-radius: 6px 6px 6px 6px;
+}
+
+#user-comment p {
+
+	padding: 10px;
+}

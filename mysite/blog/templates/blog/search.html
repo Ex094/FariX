@@ -25,7 +25,7 @@
     var nav = $('#farix-nav');
     
     $(window).scroll(function () {
-        if ($(this).scrollTop() > 10) {
+        if ($(this).scrollTop() > 250) {
 
             nav.addClass("farix-nav-fixed");
             $('#farix-nav').stop().animate({'opacity':'0.2'},400);
@@ -82,103 +82,41 @@
     </div>
 
   <div class="container content">
-    <div class="row">
-      <div class="nine columns">
 
-      {% if post %}
+    <div class="row">
+      
+      <div class="nine column">
+
+      <center><h2>Search Results</h2>
+      <br />
+
+      {% if search_result %}
+
+        {% for post in search_result %}
 
           {% if post.section.enabled == True %}
         
-        <h2>{{ post.title }}</h2>
+        <h3><a id="farix-link" href="/blog/{{post.id}}/">{{ post.title }}</a></h3>
         <h6>Written by <a href="#">{{ post.author }}</a> at {{ post.created_on }}</h6>
-        <p>{{ post.body|safe }}</p>
         <hr />
 
-        {% endif %}
+          {% endif %}
 
-            {%else%}
-              <h2>No posts found</h2>
-             {% endif %}
+        {% endfor %}
 
-        <h4>Comments</h4>
+      {%else%}
 
-      <div class="farix-post-comments">
-      {% if post_comments %}
-         {% for comment in post_comments %}
-          <div id="user-comment">
-            <h6><b>{{comment.user_name}}</b></h6>
-            <p>{{comment.comment}}</p>
-          </div>
-         {% endfor %}
-      {% else %}
-          <h4>No Comments for this post</h4>
+      <h2>No posts found</h2>
+
       {% endif %}
-      </div>
 
-      <br />
+      </center>
 
-      <h4>Leave a Comment</h4>
-
-      <form>
-  <div class="row">
-    <div class="six columns">
-      <label for="exampleEmailInput">Your Username</label>
-      <input class="u-full-width" placeholder="Username" id="exampleEmailInput" type="text">
-    </div>
-  </div>
-  <label for="exampleMessage">Comment</label>
-  <textarea class="u-full-width" placeholder="Your comment here..." id="exampleMessage"></textarea>
-  <input value="Submit" type="submit">
-</form>
-
-
-      </div>
-
-      <div id="farix-sidebar">
-        <div class="container">
-
-      <div id="search">
-        <form action="/login/" method="POST">
-        {% csrf_token %}
-           <input class="u-full-width" placeholder="Search Blog" name="search" type="text">
-        </form>
-      </div>
-
-          <ul>
-          <li>
-                <h5>Latest Posts</h5>
-                <ul id="farix_sidebar_post"> 
-                   {% for posts in latest_post %}
-                   <li><a href="/blog/{{posts.id}}/">{{posts.title}}</a></li>
-                   {% endfor %}
-                </ul>
-            </li>
-            <li>
-                <h5>Blog Sections</h5>
-                <ul id="farix_sidebar_section"> 
-                   {% for sections in blog_sect %}
-                   <li><a href="/blog/section/{{sections.section_name}}/">{{sections.section_name}}</a></li>
-                   {% endfor %}
-                </ul>
-            </li>
-            <li>
-                <h5>Authors</h5>
-                <ul id="farix_sidebar_section">
-                {% if usr_list %}
-                  {% for users in usr_list %}
-                          <li><a href="/blog/author/{{ users.username }}/">{{ users.username }}</a></li>
-                  {% endfor %}
-                {% endif %}
-                </ul>
-            </li>
-            <br /><br />
-          </ul>
-
-          </div>
       </div>
 
       </div>
   </div>
+
 
       <div id="farix-footer">
 
