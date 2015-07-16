@@ -24,3 +24,4 @@ A simple blog platform powered by Django
 - Add an Image for Post
 - Author can delete comments on his posts from the front end
 - Reply to guest comments
+- Human Friendly URLs
