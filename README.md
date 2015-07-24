@@ -12,6 +12,7 @@ A simple blog platform powered by Django
 - Get blog post list by Author
 - Front End Design
 - Post Comments
+- Pagination
 - WYSIWYG Editor for Post Editor
 - Author Authentication
 - Author can publish post from Admin panel via restricted rights (Will be removed, Insecure)
