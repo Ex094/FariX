@@ -13,6 +13,7 @@ A simple blog platform powered by Django
 - Front End Design
 - Post Comments
 - Pagination
+- Post Searching
 - WYSIWYG Editor for Post Editor
 - Author Authentication
 - Author can publish post from Admin panel via restricted rights (Will be removed, Insecure)
