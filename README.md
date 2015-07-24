@@ -23,7 +23,6 @@ A simple blog platform powered by Django
 - Create Custom Author Panel
 - Ability to make a draft before publishing post
 - Registering Page
-- Add an Image for Post
 - Author can delete comments on his posts from the front end
 - Reply to guest comments
 - Human Friendly URLs
